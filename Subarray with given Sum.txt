@@ -1,0 +1,27 @@
+https://practice.geeksforgeeks.org/problems/subarray-with-given-sum-1587115621/1#
+
+class Subarray{
+    static ArrayList<Integer> subarraySum(int[] arr, int n, int sum) {
+        int start = 0;
+        int currentSum = arr[start];
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int i = 1; i<=arr.length; i++)
+        {
+                while(start < i-1 && currentSum > sum)
+                {
+                    currentSum-=arr[start++];
+                }
+            if(currentSum==sum)
+            {
+                list.add(start+1);
+                list.add(i);
+                return list;
+            }
+            if(i<n)
+                currentSum+=arr[i];
+        }
+        list.add(-1);
+        return list;
+        
+    }
+}
