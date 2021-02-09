@@ -1,0 +1,29 @@
+https://practice.geeksforgeeks.org/problems/count-the-triplets4615/1#
+
+class Solution {
+    int countTriplet(int arr[], int n) {
+        // code here
+        int count = 0;
+        HashMap<Integer, Integer> frequency = new HashMap<>();
+        for(int i = 0; i < arr.length; i++)
+        {
+            for(int j = 0; j < arr.length; j++)
+            {
+                if(i==j) continue;
+                int sum = arr[i] + arr[j];
+                if(frequency.containsKey(sum))
+                    frequency.replace(sum, frequency.get(sum)+1);
+                else
+                    frequency.put(sum,1);
+            }
+        }
+        for(int val:arr)
+        {
+            if(frequency.containsKey(val))
+            {
+                count+=frequency.get(val)/2;
+            }   
+        }
+        return count;
+    }
+}
