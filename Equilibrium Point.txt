@@ -1,0 +1,27 @@
+
+class EquilibriumPoint {
+
+    // Function to find equilibrium point
+    // a: input array
+    // n: size of array
+    public static int equilibriumPoint(long a[], int n) {
+
+        // Your code here
+        if(a.length==1)
+            return 1;
+        for(int i = 1; i<n; i++)
+        {
+            a[i]+=a[i-1];
+        }
+        for(int i = n-1; i>0; i--)
+        {
+            long check = a[i];
+            a[i] = a[i] - a[i-1];
+            if(i<n-1)
+                a[i]+=a[i+1];
+            if(check==a[i])
+                return i+1;
+        }
+        return -1;
+    }
+}
